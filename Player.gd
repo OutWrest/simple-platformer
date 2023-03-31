@@ -1,19 +1,24 @@
 extends KinematicBody2D
 
+signal enemy_collided
+
 const MAX_SPEED = 400
 
 const GRAVITY   = 950
 const ACCEL     = 500
-const FRICTION  = 700
+const FRICTION  = 900
 const JUMP      = 600
 
 var velocity = Vector2.ZERO
 
 onready var anim = $AnimatedSprite
 
+var original_position: Vector2
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	anim.play("idle")
+	original_position = position
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -36,6 +41,9 @@ func _process(delta):
 		
 	if not is_on_floor():
 		anim.play("jump")
+		
+func reset_player():
+	position = original_position
 	
 func _physics_process(delta):
 	velocity.y += GRAVITY * delta
@@ -44,6 +52,8 @@ func _physics_process(delta):
 func bounce():
 	velocity.y = -JUMP * 0.5
 
+func enemy_collided():
+	emit_signal("enemy_collided")
 
 
 

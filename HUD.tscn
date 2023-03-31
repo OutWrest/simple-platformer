@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://HUD.gd" type="Script" id=1]
 [ext_resource path="res://assets/font/EdgeOfTheGalaxyRegular-OVEa6.otf" type="DynamicFontData" id=2]
@@ -9,7 +9,15 @@ size = 72
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 2 )
 
+[sub_resource type="DynamicFont" id=4]
+size = 33
+font_data = ExtResource( 2 )
+
 [sub_resource type="DynamicFont" id=2]
+size = 50
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
 size = 50
 font_data = ExtResource( 2 )
 
@@ -32,10 +40,13 @@ align = 1
 valign = 1
 autowrap = true
 
-[node name="Title" type="Label" parent="."]
+[node name="Text" type="Node" parent="."]
+
+[node name="Title" type="Label" parent="Text"]
 margin_left = -3.0
+margin_top = 123.0
 margin_right = 1021.0
-margin_bottom = 600.0
+margin_bottom = 333.0
 rect_pivot_offset = Vector2( -582, -77 )
 custom_fonts/font = SubResource( 1 )
 text = "Get To The Top!"
@@ -43,11 +54,22 @@ align = 1
 valign = 1
 autowrap = true
 
+[node name="Description" type="Label" parent="Text"]
+margin_left = 2.0
+margin_top = 327.0
+margin_right = 1022.0
+margin_bottom = 397.0
+custom_fonts/font = SubResource( 4 )
+text = "Get coins to POWERUP your charcter and see more of the map"
+align = 1
+valign = 1
+
 [node name="StartButton" type="Button" parent="."]
 margin_left = 369.0
 margin_top = 399.0
 margin_right = 653.0
 margin_bottom = 497.0
+rect_pivot_offset = Vector2( 110, 49 )
 custom_fonts/font = SubResource( 2 )
 text = "Start"
 
@@ -60,5 +82,15 @@ position = Vector2( 936, 60 )
 scale = Vector2( 7, 7 )
 collision_mask = 0
 
+[node name="RestartButton" type="Button" parent="."]
+visible = false
+margin_left = 369.0
+margin_top = 433.0
+margin_right = 653.0
+margin_bottom = 532.0
+custom_fonts/font = SubResource( 3 )
+text = "Restart Game"
+
 [connection signal="pressed" from="StartButton" to="." method="_on_StartButton_pressed"]
 [connection signal="timeout" from="TitleTimer" to="." method="_on_TitleTimer_timeout"]
+[connection signal="pressed" from="RestartButton" to="." method="_on_RestartButton_pressed"]
