@@ -8,7 +8,7 @@ const CAMERA_INCR = Vector2(0.1, 0.1)
 const TRANSITION_DURATION = 1.5
 
 func _ready():
-	for i in range(4):
+	for i in range(5):
 		get_node("Coins/Coin" + str(i)).connect("coin_collected", self, "add_to_coins")
 		
 	var enemies_group = get_node("Enemies")

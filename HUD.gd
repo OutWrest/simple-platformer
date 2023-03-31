@@ -16,7 +16,7 @@ func hide_text():
 		label.hide()
 	
 func restart():
-	$Text/Title.text = "Get To The Top!"
+	$Text/Title.text = "Get To The Flag!"
 	show_text()
 	
 func start_game():
